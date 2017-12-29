@@ -5,12 +5,11 @@ class Sieve
 
   def primes
     nums = [*2..@limit]
-    answer = []
-    @limit.times do |i|
-      answer << nums.shift
-      nums.delete_if{|num| num % answer.last == 0}
+    delete_nums = []
+    2.upto(Math.sqrt(@limit)) do |i|
+      0.step(@limit,i){|num| delete_nums << num if num != i}
     end
-    answer.compact
+    nums - delete_nums
   end
 end
 
